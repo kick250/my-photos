@@ -17,20 +17,20 @@ export default class PhotoForm extends React.Component{
     return (
       <div>
         <p className="h2 text-center">Adicionar imagem</p>
-        <div className="row justify-content-center align-items-center gap-3">
+        <div id="add-form" className="row justify-content-center align-items-center gap-3">
           {this.showErrors()}
           <div className="col-8">
-            <input onInput={event => this.nameBind(event)} type={'text'} className="form-control text-center" placeholder="Nome"/>
+            <input id="name" onInput={event => this.nameBind(event)} type={'text'} className="form-control text-center" placeholder="Nome"/>
           </div>
           <div className="col-12 col-sm-2 col-lg-2 form-check d-flex justify-content-center gap-2">
-            <input className="form-check-input" onInput={event => this.favoritedBind(event)} type={'checkbox'}/>
+            <input id="favorited" className="form-check-input" onInput={event => this.favoritedBind(event)} type={'checkbox'}/>
             <label className="form-check-label">Favoritar</label>
           </div>
           <div className="col-12">
-            <input onInput={event => this.photoLinkBind(event)} type={'text'} className="form-control text-center" placeholder="link da imagem"/>
+            <input id="photo-link" onInput={event => this.photoLinkBind(event)} type={'text'} className="form-control text-center" placeholder="link da imagem"/>
           </div>
           <div className="col-12">
-            <textarea onInput={event => this.descriptinoBind(event)} className="form-control" cols={30} rows={5} placeholder="Descrição"></textarea>
+            <textarea id="description" onInput={event => this.descriptinoBind(event)} className="form-control" cols={30} rows={5} placeholder="Descrição"></textarea>
           </div>
           <button className="btn btn-primary add-button col-6" onClick={() => this.save()} type="button">Salvar</button>
         </div>
@@ -84,6 +84,8 @@ export default class PhotoForm extends React.Component{
 
     if (!this.validate(photo)) return;
 
+    this.clearFields();
+
     this.props.onSavedPhoto(photo);
   }
 
@@ -109,5 +111,14 @@ export default class PhotoForm extends React.Component{
     const r = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
 
     return r.test(url);
+  }
+
+  clearFields() {
+    const inputs = document.querySelectorAll(
+      '#name, #photo-link, #description'
+    );
+
+    inputs.forEach(input => { input.value = '' });
+    return true;
   }
 }
