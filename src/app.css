@@ -1,0 +1,12 @@
+body {
+  color: #4F5E67;
+}
+
+.header {
+  color: white;
+  background: steelblue;
+}
+
+.add-button {
+  float: right;
+}
