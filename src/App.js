@@ -70,7 +70,6 @@ class App extends React.Component{
               <PhotoData photo={photo}/>
               <div className="d-flex align-items-center gap-2 justify-content-end">
                 <button onClick={() => this.deletePhoto(photo)} className="btn btn-danger">&#x1F5D1;</button>
-                <button className="btn btn-primary">&#128190;</button>
                 {photo.favorited ? (<button onClick={() => this.favorite(photo)} className="star btn">&#9733;</button>) : (<button onClick={() => this.favorite(photo)} className="star btn">&#9734;</button>)}
               </div>
             </div>
