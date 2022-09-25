@@ -10,3 +10,11 @@ body {
 .add-button {
   float: right;
 }
+
+.photo {
+  max-width: 100%;
+}
+
+.star {
+  font-size: large;
+}

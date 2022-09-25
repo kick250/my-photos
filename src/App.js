@@ -10,7 +10,7 @@ class App extends React.Component{
       photos: [
         {
           name: 'test',
-          photoLink: 'https://www.eusemfronteiras.com.br/wp-content/uploads/2021/05/pexels-rasmus-svinding-35435-810x537.jpg',
+          photoLink: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-model-select-202209-6-1inch_AV1_FMT_WHH?wid=1280&hei=492&fmt=jpeg&qlt=90&.v=1660745125039',
           description: 'urso bonito',
           favorited: false,
           id: Date.now(),
@@ -18,7 +18,7 @@ class App extends React.Component{
         },
         {
           name: 'test',
-          photoLink: 'https://static3.depositphotos.com/1000608/113/i/600/depositphotos_1131732-stock-photo-brown-bear-and-a-bird.jpg',
+          photoLink: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-tv-4k-hero-select-202104_FMT_WHH?wid=640&hei=600&fmt=jpeg&qlt=90&.v=1617137945000',
           description: 'urso bonito',
           favorited: true,
           id: Date.now(),
@@ -34,7 +34,7 @@ class App extends React.Component{
         <p className="h1 py-3 text-center header">My Photos</p>
         <div className="mx-3">
           <PhotoForm onSavedPhoto={photo => this.createPhoto(photo)}/>
-          <div className="row">
+          <div className="row m-5">
             {this.showPhotosList()}
           </div>
         </div>
@@ -51,8 +51,22 @@ class App extends React.Component{
     return (
       photos.map((photo, index) => {
         return (
-          <div key={index} className="col-12 row">
-
+          <div key={index} className="col-12 col-sm-6 col-lg-6 row">
+            <div className="col-12 col-lg-8 col">
+              <img className="photo" src={photo.photoLink} alt={photo.name} title={photo.name}></img>
+            </div>
+            <div className="col-12 col-lg-4 d-flex flex-column justify-content-between">
+              <div>
+                <p className="h2">{photo.name}</p>
+                <div>
+                  <p>Descrição: {photo.description}</p>
+                </div>
+                <p>Criada em: {photo.createdAt.toLocaleDateString('pt-BR')}</p>
+              </div>
+              <div>
+                {photo.favorited ? (<p className="star">&#9733;</p>) : ''}
+              </div>
+            </div>
           </div>
         )
       })
