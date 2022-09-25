@@ -1,6 +1,8 @@
 import React from "react";
 import PhotoForm from "./components/PhotoForm.js";
 import "./app.css";
+import PhotoImage from "./components/PhotoImage.js";
+import PhotoData from "./components/PhotoData.js";
 
 class App extends React.Component{
   constructor(props) {
@@ -23,7 +25,15 @@ class App extends React.Component{
           favorited: true,
           id: Date.now() + 40,
           createdAt: new Date(),
-        }
+        },
+        {
+          name: 'test 2',
+          photoLink: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-tv-4k-hero-select-202104_FMT_WHH?wid=640&hei=600&fmt=jpeg&qlt=90&.v=1617137945000',
+          description: 'urso bonito',
+          favorited: true,
+          id: Date.now() + 41,
+          createdAt: new Date(),
+        },
       ]
     };
   }
@@ -34,7 +44,7 @@ class App extends React.Component{
         <p className="h1 py-3 text-center header">My Photos</p>
         <div className="mx-3">
           <PhotoForm onSavedPhoto={photo => this.createPhoto(photo)}/>
-          <div className="row m-5 gap-5">
+          <div className="row m-5 gap-5 justify-content-center justify-content-sm-between">
             <div className="col-12 h2 text-center mb-5">Imagens adicionadas</div>
             {this.showPhotosList()}
           </div>
@@ -54,16 +64,10 @@ class App extends React.Component{
         return (
           <div key={index} className="photo-box col-12 col-sm-6 col-lg-6 row">
             <div className="col-12 col-lg-8 col">
-              <img className="photo" src={photo.photoLink} alt={photo.name} title={photo.name}></img>
+              <PhotoImage photo={photo}/>
             </div>
             <div className="col-12 col-lg-4 d-flex flex-column justify-content-between">
-              <div>
-                <p className="h2">{photo.name}</p>
-                <div>
-                  <p>Descrição: {photo.description}</p>
-                </div>
-                <p>Criada em: {photo.createdAt.toLocaleDateString('pt-BR')}</p>
-              </div>
+              <PhotoData photo={photo}/>
               <div className="d-flex align-items-center gap-2 justify-content-end">
                 <button onClick={() => this.deletePhoto(photo)} className="btn btn-danger">&#x1F5D1;</button>
                 <button className="btn btn-primary">&#128190;</button>
