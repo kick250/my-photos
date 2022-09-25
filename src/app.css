@@ -18,3 +18,9 @@ body {
 .star {
   font-size: large;
 }
+
+.photo-box {
+  padding: 10px;
+  background: #f2f2f2;
+  border-radius: 9px;
+}
