@@ -9,6 +9,7 @@ class App extends React.Component{
     super(props);
 
     this.state = {
+      justFavorite: false,
       photos: [
         {
           name: 'test',
@@ -31,7 +32,7 @@ class App extends React.Component{
           photoLink: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-tv-4k-hero-select-202104_FMT_WHH?wid=640&hei=600&fmt=jpeg&qlt=90&.v=1617137945000',
           description: 'urso bonito',
           favorited: true,
-          id: Date.now() + 41,
+          id: Date.now() + 433333,
           createdAt: new Date(),
         },
       ]
@@ -44,8 +45,11 @@ class App extends React.Component{
         <p className="h1 py-3 text-center header">My Photos</p>
         <div className="mx-3">
           <PhotoForm onSavedPhoto={photo => this.createPhoto(photo)}/>
-          <div className="row m-5 gap-5 justify-content-center justify-content-sm-between">
-            <div className="col-12 h2 text-center mb-5">Imagens adicionadas</div>
+          <div className="row m-5 gap-3 justify-content-center justify-content-sm-between">
+            <div className="col-12 h2 text-center mb-0">Imagens adicionadas</div>
+            <div className="d-flex justify-content-center gap-2">
+              <input onInput={() => this.showJustFavorite()} type="checkbox"/>Favoritos
+            </div>
             {this.showPhotosList()}
           </div>
         </div>
@@ -54,15 +58,21 @@ class App extends React.Component{
   }
 
   showPhotosList() {
-    const photos = this.state.photos
+    let photos = this.state.photos
 
     if (photos.length === 0)
       return (<div className="h2 text-center">Nenhuma imagem adicionada</div>);
 
+    if (this.state.justFavorite)
+      photos = photos.filter(photo => { return photo.favorited });
+
+    if (photos.length === 0)
+      return (<div className="h2 text-center">Nenhuma imagem favoritava</div>);
+
     return (
-      photos.map((photo, index) => {
+      photos.map((photo) => {
         return (
-          <div key={index} className="photo-box col-12 col-sm-6 col-lg-6 row">
+          <div key={photo.id} className="photo-box col-12 col-sm-6 col-lg-6 row">
             <div className="col-12 col-lg-8 col">
               <PhotoImage photo={photo}/>
             </div>
@@ -98,6 +108,11 @@ class App extends React.Component{
   favorite(photo) {
     photo.favorited = !photo.favorited;
     this.save(photo);
+  }
+
+  showJustFavorite() {
+    const justFavorite = !this.state.justFavorite;
+    this.setState({justFavorite});
   }
 
   save(photo) {
