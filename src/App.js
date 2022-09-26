@@ -48,7 +48,8 @@ class App extends React.Component{
           <div className="row m-5 gap-3 justify-content-center justify-content-sm-between">
             <div className="col-12 h2 text-center mb-0">Imagens adicionadas</div>
             <div className="d-flex justify-content-center gap-2">
-              <input onInput={() => this.showJustFavorite()} type="checkbox"/>Favoritos
+              <input id="justFavorited" onInput={() => this.showJustFavorite()} type="checkbox"/>
+              <label for="justFavorited">Favoritos</label>
             </div>
             {this.showPhotosList()}
           </div>

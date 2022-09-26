@@ -13,7 +13,7 @@ export default class PhotoData extends React.Component {
       <div>
         <p className="h2">{this.state.photo.name}</p>
         <div>
-          <p>Descrição: {this.state.photo.description}</p>
+          <p className="description">Descrição: {this.state.photo.description}</p>
         </div>
         <p>Criada em: {this.state.photo.createdAt.toLocaleDateString('pt-BR')}</p>
       </div>
