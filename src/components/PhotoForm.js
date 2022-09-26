@@ -119,6 +119,15 @@ export default class PhotoForm extends React.Component{
     );
 
     inputs.forEach(input => { input.value = '' });
+
+    this.setState({
+      name: '',
+      favorited: false,
+      photoLink: '',
+      description: '',
+      errors: []
+    });
+
     return true;
   }
 }
