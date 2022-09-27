@@ -24,7 +24,7 @@ export default class PhotoForm extends React.Component{
           </div>
           <div className="col-12 col-sm-2 col-lg-2 form-check d-flex justify-content-center gap-2">
             <input id="favorited" className="form-check-input" onInput={event => this.favoritedBind(event)} type={'checkbox'}/>
-            <label for="favorited" className="form-check-label">Favoritar</label>
+            <label htmlFor="favorited" className="form-check-label">Favoritar</label>
           </div>
           <div className="col-12">
             <input id="photo-link" onInput={event => this.photoLinkBind(event)} type={'text'} className="form-control text-center" placeholder="link da imagem"/>
