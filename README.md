@@ -1,4 +1,4 @@
-# Crud de imagens
+# Crud de imagens usando react
 
 ## Como rodar
 `npm install`
