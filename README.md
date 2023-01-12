@@ -1,1 +1,8 @@
-Crud de fotos
+# Crud de imagens
+
+## Como rodar
+`npm install`
+
+`npm run start`
+
+
